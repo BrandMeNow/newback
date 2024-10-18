@@ -8,7 +8,7 @@ import {
 import {
     AddCart, UpdateCart, getCart, userTokenController, userBlogsController, Userlogin, SignupUser, getAllBlogsController, createBlogController,
     updateBlogController, deleteBlogController, getBlogIdController, CreateChatController, findUserschatController, findchatController
-    , GetAllCategoriesByParentIdController, updateProfileUser, cancelOrderUser, userOrdersViewController, getPrivateProductIdUser, AuthUserByID, contactEnquire, UsergetAllHomeProducts, getHomeLayoutData, SendOTP, ordercancel, ordersucess, SignupLoginUser, LoginUserWithPass, LoginUserWithOTP, SignupNewUser, getCollectionProductIdUser, UsergetAllPrivateProducts, UsergetAllCategories, UsergetAllProducts, getAllAttributeUser, getHomeData, getProductIdUser, updateUserController, createOrderController, updateUserAndCreateOrderController, userOrdersController
+    ,Newsletter , GetAllCategoriesByParentIdController, updateProfileUser, cancelOrderUser, userOrdersViewController, getPrivateProductIdUser, AuthUserByID, contactEnquire, UsergetAllHomeProducts, getHomeLayoutData, SendOTP, ordercancel, ordersucess, SignupLoginUser, LoginUserWithPass, LoginUserWithOTP, SignupNewUser, getCollectionProductIdUser, UsergetAllPrivateProducts, UsergetAllCategories, UsergetAllProducts, getAllAttributeUser, getHomeData, getProductIdUser, updateUserController, createOrderController, updateUserAndCreateOrderController, userOrdersController
 
 } from "../controller/userController.js"
 import authenticateToken from "../middleware/authMiddleware.js";
@@ -207,6 +207,9 @@ router.get('/all-attribute', getAllAttributeUser);
 
 // home settings user
 router.get('/home-data', getHomeData);
+
+router.post('/news-letter', Newsletter);
+
 
 
 export default router;
