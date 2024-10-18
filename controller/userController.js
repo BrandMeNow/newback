@@ -2163,7 +2163,10 @@ export const Newsletter = async (req, res) => {
           });
 
         } else {
-          res.status(200).send('NewsLetter Subscribe Successfully!');
+          res.status(200).json({
+            success: true,
+            message: 'NewsLetter Subscribe Successfully!',
+          });
           console.log('NewsLetter Subscribe Successfully!');
 
         }
