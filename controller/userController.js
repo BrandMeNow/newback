@@ -2118,6 +2118,68 @@ export const LoginUserWithPass = async (req, res) => {
 }
 
 
+export const Newsletter = async (req, res) => {
+
+  const { email } = req.body;
+
+  if (!email) {
+
+    res.status(500).json({
+      success: false,
+      message: 'Error on otp Send',
+      error: error.message,
+    });
+  } else {
+    try {
+      // Configure nodemailer transporter
+      const transporter = nodemailer.createTransport({
+        // SMTP configuration
+        host: process.env.MAIL_HOST, // Update with your SMTP host
+        port: process.env.MAIL_PORT, // Update with your SMTP port
+        secure: process.env.MAIL_ENCRYPTION, // Set to true if using SSL/TLS
+        auth: {
+          user: process.env.MAIL_USERNAME, // Update with your email address
+          pass: process.env.MAIL_PASSWORD,// Update with your email password
+        }
+      });
+
+      // Email message
+      const mailOptions = {
+        from: process.env.MAIL_FROM_ADDRESS, // Update with your email address
+        to: process.env.MAIL_TO_ADDRESS, // Update with your email address
+        subject: 'Brandnow Email Verification',
+        html: `<h3>Email: <b>${email}</b></h3>` // HTML body with OTP in bold
+      };
+
+      // Send email
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log('error on newsLetter subscribe', error);
+
+          res.status(500).json({
+            success: false,
+            message: 'error on newsLetter subscribe',
+            error: error.message,
+          });
+
+        } else {
+          res.status(200).send('NewsLetter Subscribe Successfully!');
+          console.log('NewsLetter Subscribe Successfully!');
+
+        }
+      });
+
+    } catch (error) {
+      // Handle errors
+      console.error('Error sending OTP:', error);
+      throw new Error('Failed to send OTP');
+    }
+  }
+
+};
+
+
+
 export const AuthUserByID = async (req, res) => {
 
   try {
